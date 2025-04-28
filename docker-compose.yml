@@ -1,0 +1,49 @@
+version: "3.7"
+
+networks:
+  alfred_test_network:
+    name: alfred_test_network
+
+volumes:
+  alfred_db_data:
+    name: alfred_db_data
+
+services:
+
+  db:
+    image: postgres:14
+    container_name: alfred_test_db
+    command: postgres -c 'max_connections=500'
+    env_file:
+      - ./.envs/db.env
+    volumes:
+      - alfred_db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - alfred_test_network
+    restart: always
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: alfred_test/app:latest
+    container_name: alfred_test_app
+    env_file:
+      - ./.envs/db.env
+      - ./.envs/app.env
+    volumes:
+      - ./app:/var/app
+    ports:
+      - 8000:8000
+    networks:
+      - alfred_test_network
+    depends_on:
+      - db
+    command: ["/start.sh"]
+    deploy:
+        resources:
+            limits:
+              cpus: 1
+              memory: 2GB
