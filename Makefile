@@ -24,5 +24,5 @@ pytest:
 	docker exec alfred_test_app pytest
 
 lint-fix:
-	@python -m black .
-	@python -m isort --atomic . --profile black
+	@python3 -m black ./app
+	@python3 -m isort --atomic ./app --profile black

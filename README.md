@@ -4,10 +4,14 @@ This project is a Django REST Framework API to manage `Address`, `Driver`, and `
 
 ## Technologies
 
+- Python 3.11
 - Django
 - Django REST Framework
 - PostgreSQL (or other database of your choice)
-- Docker
+- Docker & Docker Compose
+- Gunicorn
+- Faker (para generación de datos de prueba)
+
 
 ## Getting Started
 
