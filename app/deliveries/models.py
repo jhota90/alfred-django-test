@@ -31,6 +31,7 @@ class Service(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
     estimated_arrival_time = models.DurationField()
     created_at = models.DateTimeField(auto_now_add=True)
+    finished_at = models.DateTimeField(null=True, blank=True, default=None)
 
     def __str__(self):
         return f"Service {self.id} - {self.status}"
