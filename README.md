@@ -46,3 +46,31 @@ docker-compose run app python manage.py test
 ```bash
 docker-compose down
 ```
+
+## API Access
+### URL
+http://localhost:8000/api/
+
+### Authentication Token
+
+#### Get Token
+```
+POST http://localhost:8000/api/token/
+body: { "username": "admin", "password": "admin" }
+```
+
+#### Send Token in Reques
+```
+Authorization: Token <token>
+```
+
+### Main Endpoints
+
+#### CRUD Complete:
+- /api/addresses/
+- /api/drivers/
+- /api/services/
+
+#### Logical endpoints:
+- Request a driver: (POST) /api/services/request_service/
+- Mark a service as complete: (POST) /api/drivers/{id}/complete_service/
