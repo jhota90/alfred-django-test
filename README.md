@@ -42,11 +42,6 @@ docker-compose up -d
 docker-compose run app python manage.py test
 ```
 
-#### Running PyTests
-```bash
-docker-compose run app pytest
-```
-
 #### Stop the application
 ```bash
 docker-compose down

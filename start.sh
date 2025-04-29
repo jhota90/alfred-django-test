@@ -15,7 +15,7 @@ if not User.objects.filter(username='admin').exists():
     print("Creando superusuario...")
     User.objects.create_superuser('admin', 'admin@example.com', 'admin')
 else:
-    print("Superusuario ya existe.")
+    print("Superuser already exist.")
 EOF
 echo "----- FINISHED SUPERUSER -----"
 
@@ -30,5 +30,5 @@ EOF
 echo "----- FINISHED TEST DATA -----"
 
 echo "----- STARTING WEB SERVER -----"
-python manage.py runserver 0.0.0.0:8000
-# gunicorn app.wsgi:application --bind 0.0.0.0:8000
+# python manage.py runserver 0.0.0.0:8000
+gunicorn app.wsgi:application --bind 0.0.0.0:8000
